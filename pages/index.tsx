@@ -39,7 +39,7 @@ const Index = ({ articles }: Props) => {
 };
 
 export const getStaticProps = async () => {
-  const articles = await getAllArticles();
+  const articles = await getAllArticles("_data/blog");
 
   return { props: { articles } };
 };

@@ -54,7 +54,7 @@ type Params = {
 };
 
 export async function getStaticProps({ params }: Params) {
-  const article = await getArticleFromSlug(params.slug);
+  const article = await getArticleFromSlug(params.slug, "_data/blog");
 
   return {
     props: {
@@ -65,7 +65,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const articles = await getAllArticles();
+  const articles = await getAllArticles("_data/blog");
 
   return {
     paths: articles.map((article: ArticleType) => {

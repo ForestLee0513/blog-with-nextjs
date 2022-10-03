@@ -5,11 +5,12 @@ import readingTime from "reading-time";
 import { sync } from "glob";
 import { serialize } from "next-mdx-remote/serialize";
 
-// postsPath 변수를 기준으로 폴더 조회 후 md, mdx가 존재하면 배열로 반환
-const postsPath = join(process.cwd(), "_data/blog");
+export function getSlug(folderPath: string) {
+  if (!folderPath) {
+    throw new Error("Required: No folder path");
+  }
 
-export function getSlug() {
-  const paths = sync(`${postsPath}/*.{md,mdx}`);
+  const paths = sync(`${folderPath}/*.{md,mdx}`);
 
   return paths.map((path: string) => {
     const pathContent = path.split("/");
@@ -21,9 +22,13 @@ export function getSlug() {
 }
 
 // slug를 기준으로 article 정보 조회(frontmatter)
-export async function getArticleFromSlug(slug: string) {
-  const articleMdPath = join(postsPath, `${slug}.md`);
-  const articleMdxPath = join(postsPath, `${slug}.mdx`);
+export async function getArticleFromSlug(slug: string, folderPath: string) {
+  if (!folderPath) {
+    throw new Error("Required: No folder path");
+  }
+
+  const articleMdPath = join(folderPath, `${slug}.md`);
+  const articleMdxPath = join(folderPath, `${slug}.mdx`);
   const source = fs.existsSync(articleMdxPath)
     ? fs.readFileSync(articleMdxPath)
     : fs.readFileSync(articleMdPath);
@@ -44,6 +49,12 @@ export async function getArticleFromSlug(slug: string) {
 }
 
 // 모든 article 정보 조회
-export async function getAllArticles() {
-  return await Promise.all(getSlug().map((slug) => getArticleFromSlug(slug)));
+export async function getAllArticles(folderPath: string) {
+  if (!folderPath) {
+    throw new Error("Required: No folder path");
+  }
+
+  return await Promise.all(
+    getSlug(folderPath).map((slug) => getArticleFromSlug(slug, folderPath))
+  );
 }
