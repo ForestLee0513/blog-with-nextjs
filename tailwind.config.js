@@ -1,11 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  darkMode: false, // or 'media' or 'class'
   theme: {
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        md: "2rem",
+      },
+    },
+  },
+
+  variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
