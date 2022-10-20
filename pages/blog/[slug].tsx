@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import ErrorPage from "next/error";
 import { MDXRemote } from "next-mdx-remote";
 import ReactMarkdown from "react-markdown";
 import remarkHtml from "remark-html";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
@@ -26,24 +28,29 @@ export default function Post({ article }: Props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  // 만약 MDX일 경우 MDXRemote로 컴포넌트 출력
-  if (article.isMdx) {
-    return (
-      <MDXRemote
-        compiledSource={""}
-        {...article.mdxSource}
-        components={components}
-      />
-    );
-  }
-
   return (
-    <ReactMarkdown
-      remarkPlugins={[remarkHtml, remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
-    >
-      {article.content}
-    </ReactMarkdown>
+    <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://highlightjs.org/static/demo/styles/atom-one-dark.css"
+        />
+      </Head>
+      {article.isMdx ? (
+        <MDXRemote
+          compiledSource={""}
+          {...article.mdxSource}
+          components={components}
+        />
+      ) : (
+        <ReactMarkdown
+          remarkPlugins={[remarkHtml, remarkGfm]}
+          rehypePlugins={[rehypeRaw, rehypeHighlight]}
+        >
+          {article.content}
+        </ReactMarkdown>
+      )}
+    </>
   );
 }
 

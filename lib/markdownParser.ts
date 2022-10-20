@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import { sync } from "glob";
 import { serialize } from "next-mdx-remote/serialize";
+import rehypeHighlight from "rehype-highlight";
 
 export function getSlug(folderPath: string) {
   if (!folderPath) {
@@ -39,7 +40,12 @@ export async function getArticleFromSlug(slug: string, folderPath: string) {
       frontmatter: data,
       readingTime: readingTime(content).text,
       mdxSource: fs.existsSync(articleMdxPath)
-        ? await serialize(content)
+        ? await serialize(content, {
+            mdxOptions: {
+              rehypePlugins: [rehypeHighlight],
+              format: "mdx",
+            },
+          })
         : null,
       isMdx: fs.existsSync(articleMdxPath),
       slug,
