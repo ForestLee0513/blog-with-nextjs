@@ -1,7 +1,17 @@
+import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import Header from "../components/header/Header";
+import Container from "../components/header/Container";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Header></Header>
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+    </>
+  );
 }
 
 export default MyApp;
