@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 
 const Container = ({
-  className,
+  className = "",
   children,
   ...rest
 }: HTMLAttributes<HTMLDivElement>) => {

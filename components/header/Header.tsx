@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react";
 import Container from "../Container";
 
 const Header = ({
-  className,
+  className = "",
   children,
   ...rest
 }: HTMLAttributes<HTMLElement>) => {
