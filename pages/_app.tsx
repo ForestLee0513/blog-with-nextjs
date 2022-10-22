@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Header></Header>
-      <Container>
+      <Container className="py-4">
         <Component {...pageProps} />
       </Container>
     </>

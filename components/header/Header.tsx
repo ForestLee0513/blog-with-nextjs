@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { PropsWithChildren } from "react";
+import { HTMLAttributes } from "react";
 import Container from "./Container";
 
-const Header = ({ children }: PropsWithChildren) => {
+const Header = ({
+  className,
+  children,
+  ...rest
+}: HTMLAttributes<HTMLElement>) => {
   const userName = process.env.NEXT_PUBLIC_USERNAME || "Tailwind blog starter";
 
   return (
-    <header className="py-4 border-b mb-4">
+    <header className={`py-4 border-b ${className}`} {...rest}>
       <Container>
         <Link href="/">
           <h3 className="cursor-pointer">{userName}</h3>
