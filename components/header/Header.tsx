@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HTMLAttributes } from "react";
-import Container from "./Container";
+import Container from "../Container";
 
 const Header = ({
   className,
