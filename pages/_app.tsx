@@ -11,24 +11,30 @@ import NavList from "../components/nav/NavList";
 import NavItem from "../components/nav/NavItem";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useToggle from "../hooks/useToggle";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const userName = process.env.NEXT_PUBLIC_USERNAME || "Tailwind blog starter";
   const { pathname } = useRouter();
+  const [isOpen, toggle] = useToggle();
+  const mobileNavStyle =
+    "absolute top-full px-0 flex-col md:px-4 inset-x-0 md:static md:flex";
 
   return (
     <>
-      <Header>
+      <Header className="relative">
         <HeaderList>
           <HeaderItem>
             <Link href="/">
               <h3 className="cursor-pointer m-0">{userName}</h3>
             </Link>
           </HeaderItem>
-          {/* Todo: Should refactor to Array from hard coding... */}
+          {/* TODO: Should refactor to Array from hard coding... */}
           {/* I know this code is really sucks, but this code is temporary. It will change to Object for manage routes. */}
-          <HeaderItemFull>
-            <NavList>
+          <HeaderItemFull
+            className={`${isOpen ? mobileNavStyle : "hidden"} md:flex`}
+          >
+            <NavList className="flex-col md:flex-row">
               <NavItem href="/" pathname={pathname}>
                 Blog
               </NavItem>
@@ -39,6 +45,12 @@ function MyApp({ Component, pageProps }: AppProps) {
                 Projects
               </NavItem>
             </NavList>
+          </HeaderItemFull>
+          <HeaderItemFull className="md:hidden">
+            <button className="my-0" onClick={toggle}>
+              {/* TODO: This text will replace to hambuger icon soon. */}
+              Toggle Nav
+            </button>
           </HeaderItemFull>
         </HeaderList>
       </Header>
