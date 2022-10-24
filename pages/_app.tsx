@@ -1,9 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Header from "../components/header/Header";
+import {
+  Header,
+  HeaderList,
+  HeaderItem,
+  HeaderItemFull,
+} from "../components/header";
 import Container from "../components/Container";
-import HeaderList from "../components/header/HeaderList";
-import { HeaderItem, HeaderItemFull } from "../components/header/HeaderItem";
 import NavList from "../components/nav/NavList";
 import NavItem from "../components/nav/NavItem";
 import Link from "next/link";
@@ -12,8 +15,6 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }: AppProps) {
   const userName = process.env.NEXT_PUBLIC_USERNAME || "Tailwind blog starter";
   const { pathname } = useRouter();
-
-  console.log(pathname);
 
   return (
     <>
