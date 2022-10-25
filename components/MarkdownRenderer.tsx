@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ErrorPage from "next/error";
 
 import { MDXRemote } from "next-mdx-remote";
 import ReactMarkdown from "react-markdown";
@@ -7,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import ArticleType from "../interfaces/article";
+import { useRouter } from "next/router";
 
 interface Props {
   article: ArticleType;
@@ -14,6 +16,11 @@ interface Props {
 }
 
 const MarkdownRenderer = ({ article, components }: Props) => {
+  const router = useRouter();
+  if (!router.isFallback && !article?.slug) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   return (
     <>
       <Head>
