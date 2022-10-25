@@ -1,7 +1,9 @@
 import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
 import Test from "../../components/test";
-import MarkdownRenderer from "../../components/MarkdownRenderer";
+import Body from "../../components/article/Body";
+import Header from "../../components/article/Header";
+import Author from "../../components/article/Author";
 
 const components = {
   Test,
@@ -14,7 +16,17 @@ type Props = {
 };
 
 export default function Post({ article }: Props) {
-  return <MarkdownRenderer article={article} components={components} />;
+  const {
+    frontmatter: { title, date },
+    readingTime,
+  } = article;
+  return (
+    <>
+      <Header title={title} date={date} readingTime={readingTime} />
+      <Body article={article} components={components} />
+      <Author />
+    </>
+  );
 }
 
 type Params = {

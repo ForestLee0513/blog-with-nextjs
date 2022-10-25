@@ -1,13 +1,13 @@
 import ArticleType from "../interfaces/article";
 import { getArticleFromSlug } from "../lib/markdownParser";
-import MarkdownRenderer from "../components/MarkdownRenderer";
+import Body from "../components/article/Body";
 
 type Props = {
   article: ArticleType;
 };
 
 const Resume = ({ article }: Props) => {
-  return <MarkdownRenderer article={article} />;
+  return <Body article={article} />;
 };
 
 export async function getStaticProps() {
