@@ -4,6 +4,7 @@ import Head from "next/head";
 import Post from "../interfaces/article";
 import Link from "next/link";
 import type ArticleType from "../interfaces/article";
+import Author from "../components/article/Author";
 
 type Props = {
   articles: Post[];
@@ -18,7 +19,7 @@ const Index = ({ articles }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Next.js blog template with some additional features!</h1>
+        <Author />
         <ul>
           {articles.map((article: ArticleType, index) => {
             return (

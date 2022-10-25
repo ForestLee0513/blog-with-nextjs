@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import author from "../../author";
 import authorImage from "../../public/assets/author.png";
 
 const Author = () => {
@@ -10,9 +11,9 @@ const Author = () => {
       </div>
       <div className="flex flex-col pl-2 mt-2 md:mt-0">
         <h4 className="m-0 mb-1">
-          Written by <span className="font-medium">@Username</span>
+          Written by <span className="font-medium">@{author.username}</span>
         </h4>
-        <p className="m-0">this is description....</p>
+        <p className="m-0">{author.description}</p>
       </div>
     </div>
   );

@@ -12,9 +12,9 @@ import NavItem from "../components/nav/NavItem";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useToggle from "../hooks/useToggle";
+import author from "../author";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const userName = process.env.NEXT_PUBLIC_USERNAME || "Tailwind blog starter";
   const { pathname } = useRouter();
   const [isOpen, toggle] = useToggle();
   const mobileNavStyle =
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <HeaderList>
           <HeaderItem>
             <Link href="/">
-              <h3 className="cursor-pointer m-0">{userName}</h3>
+              <h3 className="cursor-pointer m-0">{author.username}</h3>
             </Link>
           </HeaderItem>
           {/* TODO: Should refactor to Array from hard coding... */}
