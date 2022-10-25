@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import ErrorPage from "next/error";
+
 import { MDXRemote } from "next-mdx-remote";
 import ReactMarkdown from "react-markdown";
 import remarkHtml from "remark-html";
@@ -11,6 +12,7 @@ import rehypeHighlight from "rehype-highlight";
 import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
 import Test from "../../components/test";
+import MarkdownRenderer from "../../components/MarkdownRenderer";
 
 const components = {
   Test,
@@ -28,30 +30,7 @@ export default function Post({ article }: Props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  return (
-    <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://highlightjs.org/static/demo/styles/atom-one-dark.css"
-        />
-      </Head>
-      {article.isMdx ? (
-        <MDXRemote
-          compiledSource={""}
-          {...article.mdxSource}
-          components={components}
-        />
-      ) : (
-        <ReactMarkdown
-          remarkPlugins={[remarkHtml, remarkGfm]}
-          rehypePlugins={[rehypeRaw, rehypeHighlight]}
-        >
-          {article.content}
-        </ReactMarkdown>
-      )}
-    </>
-  );
+  return <MarkdownRenderer article={article} components={components} />;
 }
 
 type Params = {
