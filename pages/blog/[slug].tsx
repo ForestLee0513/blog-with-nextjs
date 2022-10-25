@@ -17,12 +17,17 @@ type Props = {
 
 export default function Post({ article }: Props) {
   const {
-    frontmatter: { title, date },
+    frontmatter: { title, date, description },
     readingTime,
   } = article;
   return (
     <>
-      <Header title={title} date={date} readingTime={readingTime} />
+      <Header
+        title={title}
+        date={date}
+        readingTime={readingTime}
+        description={description}
+      />
       <Body article={article} components={components} />
       <Author />
     </>
