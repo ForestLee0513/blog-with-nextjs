@@ -4,7 +4,7 @@ import authorImage from "../../public/assets/author.png";
 
 const Author = () => {
   return (
-    <div className="bg-slate-50 p-4 rounded-md felx flex-col md:flex-row">
+    <div className="bg-slate-50 p-4 rounded-md flex flex-col md:flex-row md:items-center">
       <div className="square aspect-square w-32 relative rounded-full overflow-hidden">
         <Image src={authorImage} alt="author" layout="fill" objectFit="cover" />
       </div>
