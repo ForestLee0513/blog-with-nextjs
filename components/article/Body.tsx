@@ -10,12 +10,15 @@ import rehypeHighlight from "rehype-highlight";
 import ArticleType from "../../interfaces/article";
 import { useRouter } from "next/router";
 
+import * as AllComponents from "../index";
+
 interface Props {
   article: ArticleType;
-  components?: { [key: string]: () => JSX.Element };
 }
 
-const Body = ({ article, components }: Props) => {
+const components = AllComponents;
+
+const Body = ({ article }: Props) => {
   const router = useRouter();
   if (!router.isFallback && !article?.slug) {
     return <ErrorPage statusCode={404} />;

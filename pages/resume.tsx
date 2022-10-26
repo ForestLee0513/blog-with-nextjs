@@ -1,7 +1,6 @@
 import ArticleType from "../interfaces/article";
 import { getArticleFromSlug } from "../lib/markdownParser";
-import Body from "../components/article/Body";
-import Header from "../components/article/Header";
+import { Body, Header } from "../components/article";
 
 type Props = {
   article: ArticleType;

@@ -1,10 +1,10 @@
 import { getAllArticles } from "../lib/markdownParser";
 import Head from "next/head";
+import Link from "next/link";
 
 import Post from "../interfaces/article";
-import Link from "next/link";
 import type ArticleType from "../interfaces/article";
-import AuthorCard from "../components/article/AuthorCard";
+import { AuthorCard } from "../components/article";
 import author from "../author";
 
 type Props = {

@@ -7,8 +7,7 @@ import {
   HeaderItemFull,
 } from "../components/header";
 import Container from "../components/Container";
-import NavList from "../components/nav/NavList";
-import NavItem from "../components/nav/NavItem";
+import { NavList, NavItem } from "../components/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useToggle from "../hooks/useToggle";

@@ -1,13 +1,6 @@
 import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
-import Test from "../../components/test";
-import Body from "../../components/article/Body";
-import Header from "../../components/article/Header";
-import AuthorCard from "../../components/article/AuthorCard";
-
-const components = {
-  Test,
-};
+import { Body, Header, AuthorCard } from "../../components/article";
 
 type Props = {
   // morePosts: ArticleType[];
@@ -28,7 +21,7 @@ export default function BlogArticle({ article }: Props) {
         readingTime={readingTime}
         description={description}
       />
-      <Body article={article} components={components} />
+      <Body article={article} />
       <AuthorCard />
     </>
   );
