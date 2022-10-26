@@ -11,7 +11,7 @@ import { NavList, NavItem } from "../components/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useToggle from "../hooks/useToggle";
-import author from "../author";
+import bio from "../bio";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <HeaderList>
           <HeaderItem>
             <Link href="/">
-              <h3 className="cursor-pointer m-0">{author.username}</h3>
+              <h3 className="cursor-pointer m-0">{bio.username}</h3>
             </Link>
           </HeaderItem>
           {/* TODO: Should refactor to Array from hard coding... */}

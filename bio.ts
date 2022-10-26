@@ -1,8 +1,8 @@
 const author = {
-  username: "ForestLee0513",
+  username: "Username",
   description: "hello world",
   link: {
-    Github: "forestlee0513.github.io",
+    Github: "https://github.com/username",
   },
 };
 

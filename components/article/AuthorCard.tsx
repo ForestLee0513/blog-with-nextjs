@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import author from "../../author";
+import bio from "../../bio";
 import authorImage from "../../public/assets/author.png";
 
 const AuthorCard = () => {
@@ -11,9 +11,9 @@ const AuthorCard = () => {
       </div>
       <div className="flex flex-col pl-2 mt-2 md:mt-0">
         <h4 className="m-0 mb-1">
-          Written by <span className="font-medium">@{author.username}</span>
+          Written by <span className="font-medium">@{bio.username}</span>
         </h4>
-        <p className="m-0">{author.description}</p>
+        <p className="m-0">{bio.description}</p>
       </div>
     </div>
   );

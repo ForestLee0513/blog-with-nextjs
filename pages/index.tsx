@@ -1,11 +1,9 @@
 import { getAllArticles } from "../lib/markdownParser";
 import Head from "next/head";
-import Link from "next/link";
 
 import Post from "../interfaces/article";
-import type ArticleType from "../interfaces/article";
 import { AuthorCard, List } from "../components/article";
-import author from "../author";
+import bio from "../bio";
 
 type Props = {
   articles: Post[];
@@ -20,7 +18,7 @@ const Index = ({ articles }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Welcome to {author.username}&#39;s page</h1>
+        <h1>Welcome to {bio.username}&#39;s page</h1>
         <AuthorCard />
         <List
           route="/blog"
