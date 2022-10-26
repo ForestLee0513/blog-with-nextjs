@@ -8,12 +8,12 @@ interface Props {
 const Header = ({ title, date, readingTime, description }: Props) => {
   return (
     <div>
-      <h1 className="mb-0">{title}</h1>
+      <h1>{title}</h1>
       <p>{description}</p>
-      <p className="my-0">
+      <p>
         작성일: {date} <span>({readingTime})</span>
       </p>
-      <hr className="my-4" />
+      <hr />
     </div>
   );
 };
