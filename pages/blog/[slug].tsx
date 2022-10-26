@@ -15,7 +15,7 @@ type Props = {
   article: ArticleType;
 };
 
-export default function Post({ article }: Props) {
+export default function BlogArticle({ article }: Props) {
   const {
     frontmatter: { title, date, description },
     readingTime,
