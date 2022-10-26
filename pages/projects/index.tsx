@@ -21,6 +21,7 @@ const Projects = ({ articles }: Props) => {
       <main>
         <h1>Projects</h1>
         <List
+          route="/projects"
           articles={articles}
           emptyErrorMessage="아직 공개된 프로젝트가 없습니다."
         />

@@ -4,19 +4,29 @@ import ArticleType from "../../interfaces/article";
 
 interface Props {
   articles: ArticleType[];
+  route: string;
   emptyErrorMessage?: string;
 }
 
-const List = ({ articles, emptyErrorMessage }: Props) => {
+const List = ({ articles, route, emptyErrorMessage }: Props) => {
   return articles.length > 0 || Array.isArray(articles) ? (
     <ul className="p-0 list-none">
       {articles.map((article: ArticleType, index) => {
+        const {
+          frontmatter: { title, description, date },
+          readingTime,
+        } = article;
+
+        const localedDate = new Date(date).toLocaleString("ko-KR", {
+          timeZone: "UTC",
+        });
+
         return (
-          <Link href={`/projects/${article.slug}`} passHref key={index}>
+          <Link href={`${route}/${article.slug}`} passHref key={index}>
             <li>
-              <h3>{article.frontmatter.title}</h3>
-              <p>{article.frontmatter.description}</p>
-              <p>{article.readingTime}</p>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              작성일: {localedDate} <span>({readingTime})</span>
               <hr />
             </li>
           </Link>

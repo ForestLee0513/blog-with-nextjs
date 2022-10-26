@@ -23,6 +23,7 @@ const Index = ({ articles }: Props) => {
         <h1>Welcome to {author.username}&#39;s page</h1>
         <AuthorCard />
         <List
+          route="/blog"
           articles={articles}
           emptyErrorMessage="아직 공개된 글이 없습니다."
         />

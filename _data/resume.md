@@ -1,6 +1,6 @@
 ---
 title: "Doe's reusme"
-date: "2022-10-25"
+date: 2022-09-29 16:19:00
 description: "I have a 2 years of Front-end job experiences."
 ---
 
