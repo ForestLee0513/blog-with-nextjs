@@ -19,7 +19,7 @@ const NavItem = ({
   return (
     <Link href={href}>
       <p
-        className={`flex justify-start md:justify-end m-0 py-2 md:py-0 px-4 md:last:pr-0 bg-slate-50 md:bg-transparent border-b-2 md:border-b-0 ${activeStyle} ${className}`}
+        className={`flex justify-start md:justify-end m-0 py-2 md:py-0 px-4 md:last:pr-0 bg-slate-50 md:bg-transparent border-b-2 md:border-b-0 cursor-pointer ${activeStyle} ${className}`}
         {...rest}
       >
         {children}
