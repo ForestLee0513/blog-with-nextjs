@@ -4,7 +4,8 @@ import Head from "next/head";
 import Post from "../interfaces/article";
 import Link from "next/link";
 import type ArticleType from "../interfaces/article";
-import Author from "../components/article/Author";
+import AuthorCard from "../components/article/AuthorCard";
+import author from "../author";
 
 type Props = {
   articles: Post[];
@@ -19,7 +20,8 @@ const Index = ({ articles }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Author />
+        <h1>Welcome to {author.username}&#39;s page</h1>
+        <AuthorCard />
         <ul>
           {articles.map((article: ArticleType, index) => {
             return (

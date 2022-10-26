@@ -1,6 +1,6 @@
-type Author = {
+type AuthorCard = {
   name: string;
   picture: string;
 };
 
-export default Author;
+export default AuthorCard;

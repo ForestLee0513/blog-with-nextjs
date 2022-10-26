@@ -3,7 +3,7 @@ import Image from "next/image";
 import author from "../../author";
 import authorImage from "../../public/assets/author.png";
 
-const Author = () => {
+const AuthorCard = () => {
   return (
     <div className="bg-slate-50 p-4 rounded-md flex flex-col md:flex-row md:items-center">
       <div className="square aspect-square w-32 relative rounded-full overflow-hidden">
@@ -19,4 +19,4 @@ const Author = () => {
   );
 };
 
-export default Author;
+export default AuthorCard;
