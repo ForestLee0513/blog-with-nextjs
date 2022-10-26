@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Post from "../interfaces/article";
 import type ArticleType from "../interfaces/article";
-import { AuthorCard } from "../components/article";
+import { AuthorCard, List } from "../components/article";
 import author from "../author";
 
 type Props = {
@@ -22,20 +22,10 @@ const Index = ({ articles }: Props) => {
       <main>
         <h1>Welcome to {author.username}&#39;s page</h1>
         <AuthorCard />
-        <ul>
-          {articles.map((article: ArticleType, index) => {
-            return (
-              <Link href={`/blog/${article.slug}`} passHref key={index}>
-                <li>
-                  <h3>{article.frontmatter.title}</h3>
-                  <p>{article.frontmatter.description}</p>
-                  <p>{article.readingTime}</p>
-                  <hr />
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
+        <List
+          articles={articles}
+          emptyErrorMessage="아직 공개된 글이 없습니다."
+        />
       </main>
     </div>
   );
