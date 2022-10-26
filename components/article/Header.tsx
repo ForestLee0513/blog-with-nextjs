@@ -1,3 +1,5 @@
+import useNavigator from "../../hooks/useNavigator";
+
 interface Props {
   title: string;
   date: string;
@@ -6,7 +8,8 @@ interface Props {
 }
 
 const Header = ({ title, date, readingTime, description }: Props) => {
-  const localedDate = new Date(date).toLocaleString("ko-KR", {
+  const navigator = useNavigator();
+  const localedDate = new Date(date).toLocaleString(navigator.language, {
     timeZone: "UTC",
   });
 

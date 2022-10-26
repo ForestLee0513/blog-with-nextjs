@@ -1,4 +1,5 @@
 import Link from "next/link";
+import useNavigator from "../../hooks/useNavigator";
 
 import ArticleType from "../../interfaces/article";
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const List = ({ articles, route, emptyErrorMessage }: Props) => {
+  const navigator = useNavigator();
+
   return articles.length > 0 || Array.isArray(articles) ? (
     <ul className="p-0 list-none">
       {articles.map((article: ArticleType, index) => {
@@ -17,7 +20,7 @@ const List = ({ articles, route, emptyErrorMessage }: Props) => {
           readingTime,
         } = article;
 
-        const localedDate = new Date(date).toLocaleString("ko-KR", {
+        const localedDate = new Date(date).toLocaleString(navigator.language, {
           timeZone: "UTC",
         });
 
