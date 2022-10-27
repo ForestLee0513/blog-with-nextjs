@@ -5,7 +5,7 @@ import authorImage from "../../public/assets/images/author.png";
 
 const AuthorCard = () => {
   return (
-    <div className="bg-slate-50 p-4 rounded-md flex flex-col md:flex-row md:items-center">
+    <div className="bg-neutral-100 dark:bg-slate-800 p-4 rounded-md flex flex-col md:flex-row md:items-center">
       <div className="square aspect-square w-32 relative rounded-full overflow-hidden">
         <Image src={authorImage} alt="author" layout="fill" objectFit="cover" />
       </div>

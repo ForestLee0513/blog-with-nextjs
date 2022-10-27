@@ -1,4 +1,7 @@
 import "../styles/globals.css";
+import { ThemeProvider } from "next-themes";
+import { useRouter } from "next/router";
+
 import type { AppProps } from "next/app";
 import {
   Header,
@@ -9,9 +12,10 @@ import {
 import Container from "../components/Container";
 import { NavList, NavItem } from "../components/nav";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import useToggle from "../hooks/useToggle";
 import bio from "../bio";
+import ThemeToggler from "../components/ThemeToggler";
+import MenuIcon from "@mui/icons-material/Menu";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -20,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     "absolute top-full px-0 flex-col md:px-4 inset-x-0 md:static md:flex";
 
   return (
-    <>
+    <ThemeProvider enableSystem={true} attribute="class">
       <Header className="relative">
         <HeaderList>
           <HeaderItem>
@@ -45,18 +49,23 @@ function MyApp({ Component, pageProps }: AppProps) {
               </NavItem>
             </NavList>
           </HeaderItemFull>
-          <HeaderItemFull className="md:hidden">
-            <button className="my-0" onClick={toggle}>
-              {/* TODO: This text will replace to hambuger icon soon. */}
-              Toggle Nav
-            </button>
+          <HeaderItemFull>
+            <ThemeToggler />
           </HeaderItemFull>
+          <HeaderItem className="md:hidden">
+            <button
+              className="my-0 w-8 h-8 flex items-center justify-center"
+              onClick={toggle}
+            >
+              <MenuIcon className="w-5 h-5" />
+            </button>
+          </HeaderItem>
         </HeaderList>
       </Header>
       <Container className="py-4">
         <Component {...pageProps} />
       </Container>
-    </>
+    </ThemeProvider>
   );
 }
 

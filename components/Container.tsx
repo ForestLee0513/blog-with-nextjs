@@ -6,7 +6,10 @@ const Container = ({
   ...rest
 }: HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className={`container mx-auto prose ${className}`} {...rest}>
+    <div
+      className={`container mx-auto prose dark:prose-invert ${className}`}
+      {...rest}
+    >
       {children}
     </div>
   );
