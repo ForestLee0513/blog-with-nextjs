@@ -100,7 +100,7 @@ You can write a articles with markdown or MDX and you can import a component of 
    ![Projects index](docs/images/projects-index.png)
    ![Projects article](docs/images/projects-article.png)
 
-### 5. Deploy it!
+### 6. Deploy it!
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ForestLee0513/blog-with-nextjs) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FForestLee0513%2Fblog-with-nextjs)
 
