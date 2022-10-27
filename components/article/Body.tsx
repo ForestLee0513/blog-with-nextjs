@@ -26,12 +26,6 @@ const Body = ({ article }: Props) => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://highlightjs.org/static/demo/styles/atom-one-dark.css"
-        />
-      </Head>
       {article.isMdx ? (
         <MDXRemote
           compiledSource={""}
