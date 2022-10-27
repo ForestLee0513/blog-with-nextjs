@@ -54,44 +54,51 @@ You can write a articles with markdown or MDX and you can import a component of 
 1. Blog
 
    ```
-   # --- Start of frontmatter ---
+   ---
    title: "Blog article"
    description: "A example of blog article"
-   date: 2022-10-26 10:15:00
-   # ---- End of frontmatter ----
+   date: 2022-10-27 16:25:00
    ---
    ...
    ```
 
    You can write a blog articles with Markdown or MDX in `_data/blog` folder.
+   If you create a file correctlly, you'll get this results like this:
+   ![Blog index](docs/images/blog-index.png)
+   ![Blog article](docs/images/blog-article.png)
 
 2. Resume
 
    ```
-   # --- Start of frontmatter ---
-   title: "Blog article"
-   description: "A example of blog article"
-   date: 2022-10-26 10:15:00
-   # ---- End of frontmatter ----
+   ---
+   title: "Doe's reusme"
+   date: 2022-10-27 16:25:00
+   description: "I have a 2 years of Front-end job experiences."
    ---
    ...
    ```
 
    You can write a resume with Markdown or MDX in `_data/resume.md` file.
+   If you edit a file correctlly, you'll get this result like this:
+
+   ![Resume](docs/images/resume.png)
 
 3. Proejcts
 
    ```
-   # --- Start of frontmatter ---
-   title: "Blog article"
-   description: "A example of blog article"
-   date: 2022-10-26 10:15:00
-   # ---- End of frontmatter ----
+   ---
+   title: "Personal ACME Project"
+   description: "A simple website"
+   date: 2022-10-27 16:25:00
    ---
    ...
    ```
 
    You can write a resume with Markdown or MDX in `_data/projects` folder.
+   If you edit a file correctlly, you'll get this results like this:
+
+   ![Projects index](docs/images/projects-index.png)
+   ![Projects article](docs/images/projects-article.png)
 
 ### 5. Deploy it!
 

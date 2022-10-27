@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import bio from "../../bio";
-import authorImage from "../../public/assets/author.png";
+import authorImage from "../../public/assets/images/author.png";
 
 const AuthorCard = () => {
   return (
