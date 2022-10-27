@@ -102,10 +102,7 @@ You can write a articles with markdown or MDX and you can import a component of 
 
 ### 5. Deploy it!
 
-> I'll write Step-by-step of How to deploy soon...
-
-Finally... If you end this steps, You can deploy your page with static site deploy service with Github Pages, Netlify, AWS S3, etc...
-If you deploy with SSR(**S**ervice **S**ide **R**endering), you can use Vercel, AWS EC2, AWS Amplify, etc... for deploy.
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ForestLee0513/blog-with-nextjs) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FForestLee0513%2Fblog-with-nextjs)
 
 ## Customize
 
