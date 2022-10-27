@@ -30,10 +30,10 @@ yarn dev
 
 ### 4. Edit your bio
 
-Open `author.ts` file in root and change it if you're clone this repo successfully, this file will display like this.
+Open `bio.ts` file in root and change it if you're clone this repo successfully, this file will display like this.
 
 ```typescript
-const author = {
+const bio = {
   username: "Username",
   description: "hello world",
   link: {

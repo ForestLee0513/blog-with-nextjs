@@ -1,4 +1,4 @@
-const author = {
+const bio = {
   username: "Username",
   description: "hello world",
   link: {
@@ -6,4 +6,4 @@ const author = {
   },
 };
 
-export default author;
+export default bio;
