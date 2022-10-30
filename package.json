@@ -1,12 +1,16 @@
 {
-  "name": "forestlee-blog",
+  "name": "blog-with-nextjs",
   "version": "0.1.0",
   "private": true,
+  "config": {
+    "url": "https://forestlee0513.github.io"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "static": "next build && next export && touch ./out/.nojekyll && echo $npm_package_config_url > ./out/CNAME"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
