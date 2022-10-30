@@ -34,7 +34,7 @@ int main() {
 
 ### Image
 
-![Ice Bear](/assets/blog/mdx-example/ice-bear.png)
+![Ice Bear](/assets/images/blog/mdx-example/ice-bear.png)
 
 ### Other HTML Tags like iframe, list
 
