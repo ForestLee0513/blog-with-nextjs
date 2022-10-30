@@ -12,7 +12,7 @@ interface Props {
 const HeadMeta = ({ title, description, url, image }: Props) => {
   return (
     <Head>
-      <title>{title || `${bio.username}'s blog`}</title>
+      <title>{title || `${bio.username}'s Page`}</title>
       <meta name="description" content={description || bio.description} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta property="og:title" content={title || `${bio.username}`} />

@@ -14,7 +14,7 @@ const Index = ({ articles }: Props) => {
     <div>
       <HeadMeta />
       <main>
-        <h1>Welcome to {bio.username}&#39;s page</h1>
+        <h1>Welcome to {bio.username}&#39;s Page</h1>
         <AuthorCard />
         <List
           route="/blog"
