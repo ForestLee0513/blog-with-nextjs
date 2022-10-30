@@ -10,6 +10,17 @@ interface Props {
 }
 
 const HeadMeta = ({ title, description, url, image }: Props) => {
+  const exportType = process.env.NEXT_PUBLIC_EXPORT_TYPE;
+  const isProd = process.env.NEXT_PUBLIC_IS_PRODUCTION;
+  // Check is website is production and if site is production, covert url to production URL
+  const dynamicOGUrl = isProd
+    ? encodeURI(`${bio.url}/api/og?title=${title}&description=${description}`)
+    : encodeURI(
+        `http://localhost:3000/api/og?title=${title}&description=${description}`
+      );
+  // Check is website's export type and if is website's export is SSR and invalid image, display dynamic OG image
+  const ogUrl = exportType === "SSR" && !image ? dynamicOGUrl : image;
+
   return (
     <Head>
       <title>{title || `${bio.username}'s Page`}</title>
@@ -18,7 +29,7 @@ const HeadMeta = ({ title, description, url, image }: Props) => {
       <meta property="og:title" content={title || `${bio.username}`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url || `${bio.url}`} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={ogUrl} />
       <meta property="og:article:author" content={bio.username} />
     </Head>
   );
