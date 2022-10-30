@@ -1,6 +1,7 @@
 import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
 import { Body, Header, AuthorCard } from "../../components/article";
+import HeadMeta from "../../components/HeadMeta";
 
 type Props = {
   article: ArticleType;
@@ -13,6 +14,7 @@ export default function ProjectArticle({ article }: Props) {
   } = article;
   return (
     <>
+      <HeadMeta title={title} description={description} />
       <Header
         title={title}
         date={date}
