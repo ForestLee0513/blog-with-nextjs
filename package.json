@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "config": {
-    "url": "https://forestlee0513.github.io"
+    "url": "https://forestlee-nextjs-blog-demo.netlify.app"
   },
   "scripts": {
     "dev": "cross-env NEXT_PUBLIC_IS_PRODUCTION=false NEXT_PUBLIC_EXPORT_TYPE=SSR next dev",
