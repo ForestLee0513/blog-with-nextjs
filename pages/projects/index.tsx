@@ -11,7 +11,7 @@ type Props = {
 const Projects = ({ articles }: Props) => {
   return (
     <div>
-      <HeadMeta title="Projects" />
+      <HeadMeta title="Projects" useDyanmicThumbnail={false} />
       <main>
         <h1>Projects</h1>
         <List

@@ -15,7 +15,7 @@ const Resume = ({ article }: Props) => {
 
   return (
     <>
-      <HeadMeta title="Resume" />
+      <HeadMeta title="Resume" useDyanmicThumbnail={false} />
       <Header
         title={title}
         date={date}

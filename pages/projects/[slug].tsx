@@ -14,7 +14,11 @@ export default function ProjectArticle({ article }: Props) {
   } = article;
   return (
     <>
-      <HeadMeta title={title} description={description} />
+      <HeadMeta
+        title={title}
+        description={description}
+        useDyanmicThumbnail={true}
+      />
       <Header
         title={title}
         date={date}

@@ -12,7 +12,7 @@ type Props = {
 const Index = ({ articles }: Props) => {
   return (
     <div>
-      <HeadMeta />
+      <HeadMeta useDyanmicThumbnail={false} />
       <main>
         <h1>Welcome to {bio.username}&#39;s Page</h1>
         <AuthorCard />
