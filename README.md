@@ -36,12 +36,13 @@ Open `bio.ts` file in root and change it if you're clone this repo successfully,
 const bio = {
   username: "Username",
   description: "hello world",
+  url: "https://username.github.io",
   link: {
     Github: "https://github.com/username",
   },
 };
 
-export default author;
+export default bio;
 ```
 
 ### 5. Write your things
@@ -101,6 +102,8 @@ You can write a articles with markdown or MDX and you can import a component of 
    ![Projects article](docs/images/projects-article.png)
 
 ### 6. Deploy it!
+
+> A root url should change to your deploy URL for display dynamic og image. You can change root url in `url` at `bio.ts` and `config.url` at `package.json`
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ForestLee0513/blog-with-nextjs) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FForestLee0513%2Fblog-with-nextjs)
 
