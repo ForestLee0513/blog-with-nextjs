@@ -1,8 +1,9 @@
-import { getAllArticles } from "../../lib/markdownParser";
+import { getAllLocaledArticles } from "../../lib/markdownParser";
 import HeadMeta from "../../components/HeadMeta";
 
 import Post from "../../interfaces/article";
 import { List } from "../../components/article";
+import { GetStaticPropsContext } from "next";
 
 type Props = {
   articles: Post[];
@@ -24,8 +25,11 @@ const Projects = ({ articles }: Props) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const articles = await getAllArticles("_data/projects");
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  const articles = await getAllLocaledArticles(
+    "_data/projects",
+    locale as string
+  );
 
   return { props: { articles } };
 };

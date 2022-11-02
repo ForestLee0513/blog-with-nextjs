@@ -2,6 +2,7 @@ import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
 import { Body, Header, AuthorCard } from "../../components/article";
 import HeadMeta from "../../components/HeadMeta";
+import { GetStaticPropsContext } from "next";
 
 type Props = {
   article: ArticleType;
@@ -31,14 +32,18 @@ export default function ProjectArticle({ article }: Props) {
   );
 }
 
-type Params = {
+interface IParams extends GetStaticPropsContext {
   params: {
     slug: string;
   };
-};
+}
 
-export async function getStaticProps({ params }: Params) {
-  const article = await getArticleFromSlug(params.slug, "_data/projects");
+export async function getStaticProps({ params: { slug }, locale }: IParams) {
+  const article = await getArticleFromSlug(
+    slug,
+    "_data/projects",
+    locale as string
+  );
 
   return {
     props: {

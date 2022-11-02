@@ -2,6 +2,7 @@ import type ArticleType from "../../interfaces/article";
 import { getAllArticles, getArticleFromSlug } from "../../lib/markdownParser";
 import { Body, Header, AuthorCard } from "../../components/article";
 import HeadMeta from "../../components/HeadMeta";
+import { GetStaticPathsContext, GetStaticPropsContext } from "next";
 
 type Props = {
   // morePosts: ArticleType[];
@@ -33,14 +34,18 @@ export default function BlogArticle({ article }: Props) {
   );
 }
 
-type Params = {
+interface IParams extends GetStaticPropsContext {
   params: {
     slug: string;
   };
-};
+}
 
-export async function getStaticProps({ params }: Params) {
-  const article = await getArticleFromSlug(params.slug, "_data/blog");
+export async function getStaticProps({ params, locale }: IParams) {
+  const article = await getArticleFromSlug(
+    params.slug,
+    "_data/blog",
+    locale as string
+  );
 
   return {
     props: {

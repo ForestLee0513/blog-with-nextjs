@@ -1,5 +1,6 @@
-import { getAllArticles } from "../lib/markdownParser";
+import { GetStaticPropsContext } from "next";
 
+import { getAllLocaledArticles } from "../lib/markdownParser";
 import Post from "../interfaces/article";
 import { AuthorCard, List } from "../components/article";
 import bio from "../bio";
@@ -26,8 +27,8 @@ const Index = ({ articles }: Props) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const articles = await getAllArticles("_data/blog");
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  const articles = await getAllLocaledArticles("_data/blog", locale as string);
 
   return { props: { articles } };
 };
