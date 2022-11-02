@@ -2,6 +2,7 @@ import ArticleType from "../interfaces/article";
 import { getArticleFromSlug } from "../lib/markdownParser";
 import { Body, Header } from "../components/article";
 import HeadMeta from "../components/HeadMeta";
+import { GetStaticPropsContext } from "next";
 
 type Props = {
   article: ArticleType;
@@ -27,8 +28,8 @@ const Resume = ({ article }: Props) => {
   );
 };
 
-export async function getStaticProps() {
-  const article = await getArticleFromSlug("resume", "_data");
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  const article = await getArticleFromSlug("resume", "_data", locale as string);
 
   return {
     props: {
