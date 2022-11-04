@@ -5,6 +5,45 @@
 Node.js: 16.13.0
 Yarn: 1.22.18
 
+## Features
+
+### 1. Markdown/MDX Articles
+
+You can write a articles with Markdown/MDX in Blog, Resume and Projects.
+
+### 2. Reading time
+
+This project can parse Markdown/MDX articles and convert to reading time from words and display it.
+
+### 3. Dynamic OG Image (SSR Only)
+
+> This feature is available in SSR only.
+
+This project can generate OG Images dynamically.
+If you want to use dynamic og image, add a `useDyanmicThumbnail` prop and remove `image` in HeadMeta Component` like this.
+
+```jsx
+import HeadMeta from "../components/HeadMeta";
+
+const Page = () => {
+  return (
+    <>
+      <HeadMeta
+        title="foo"
+        description="foo description"
+        useDyanmicThumbnail={true} // Change here.
+      />
+      {/* Content Here... */}
+    </>
+  );
+};
+```
+
+### 4. Simple deploy options
+
+You can choose depoly types from SSR/SSG if you want build this project to SSG, you can build simple to type `yarn static` than deploy it from `out` folder.
+And you can build this project to SSR to type `yarn build`.
+
 ## Quick Start
 
 ### 1. Clone this repo
@@ -113,3 +152,73 @@ You can write a articles with markdown or MDX and you can import a component of 
 
 This template is use tailwindcss.  
 you can change style in `/styles` folder.
+
+### Change dyamic OG Image styles
+
+You can change dynamic OG Image styles in `pages/api/og.tsx`
+
+```jsx
+// ...
+
+const OgImageHandler = async (req: NextRequest) => {
+  const spoqaRegularData = await spoqaRegular;
+  const spoqaBoldData = await spoqaBold;
+
+  const { searchParams } = new URL(req.url);
+
+  const hasTitle = searchParams.has("title");
+  const hasDescription = searchParams.has("title");
+  const title = hasTitle
+    ? searchParams.get("title")?.slice(0, 100)
+    : `${bio.username}'s Page`;
+  const description = hasDescription
+    ? searchParams.get("description")?.slice(0, 100)
+    : `${bio.description}`;
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "white",
+          width: "100%",
+          height: "100%",
+          padding: "30px",
+          fontFamily: "Spoqa Han Sans Neo",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: 48,
+            fontWeight: 600,
+          }}
+        >
+          {title}
+        </h1>
+        <p style={{ fontWeight: 400 }}>{description}</p>
+      </div>
+    ),
+    {
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: "Spoqa Han Sans Neo",
+          data: spoqaRegularData,
+          weight: 400,
+          style: "normal",
+        },
+        {
+          name: "Spoqa Han Sans Neo",
+          data: spoqaBoldData,
+          weight: 600,
+          style: "normal",
+        },
+      ],
+    }
+  );
+};
+```
