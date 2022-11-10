@@ -1,7 +1,7 @@
 import Head from "next/head";
 
-import bio from "../bio";
-import defaultThumbnail from "../public/assets/images/default-thumbnail.png";
+import bio from "~/bio";
+import defaultThumbnail from "~/public/assets/images/default-thumbnail.png";
 
 interface Props {
   title?: string;

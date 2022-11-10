@@ -1,8 +1,8 @@
-import { getAllLocaledArticles } from "../../lib/markdownParser";
-import HeadMeta from "../../components/HeadMeta";
+import { getAllLocaledArticles } from "~/lib/markdownParser";
+import HeadMeta from "~/components/HeadMeta";
 
-import Post from "../../interfaces/article";
-import { List } from "../../components/article";
+import Post from "~/types/article";
+import { List } from "~/components/article";
 import { GetStaticPropsContext } from "next";
 
 type Props = {

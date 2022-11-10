@@ -25,7 +25,7 @@ This project can generate OG Images dynamically.
 If you want to use dynamic og image, add a `useDyanmicThumbnail` prop and remove `image` in HeadMeta Component` like this.
 
 ```jsx
-import HeadMeta from "../components/HeadMeta";
+import HeadMeta from "~/components/HeadMeta";
 
 const Page = () => {
   return (

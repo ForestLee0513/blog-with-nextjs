@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "~/styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/router";
 
@@ -8,13 +8,13 @@ import {
   HeaderList,
   HeaderItem,
   HeaderItemFull,
-} from "../components/header";
-import Container from "../components/Container";
-import { NavList, NavItem } from "../components/nav";
+} from "~/components/header";
+import Container from "~/components/Container";
+import { NavList, NavItem } from "~/components/nav";
 import Link from "next/link";
-import useToggle from "../hooks/useToggle";
-import bio from "../bio";
-import ThemeToggler from "../components/ThemeToggler";
+import useToggle from "~/hooks/useToggle";
+import bio from "~/bio";
+import ThemeToggler from "~/components/ThemeToggler";
 import MenuIcon from "@mui/icons-material/Menu";
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,7 +1,7 @@
-import ArticleType from "../interfaces/article";
-import { getArticleFromSlug } from "../lib/markdownParser";
-import { Body, Header } from "../components/article";
-import HeadMeta from "../components/HeadMeta";
+import ArticleType from "~/types/article";
+import { getArticleFromSlug } from "~/lib/markdownParser";
+import { Body, Header } from "~/components/article";
+import HeadMeta from "~/components/HeadMeta";
 import { GetStaticPropsContext } from "next";
 
 type Props = {

@@ -7,7 +7,7 @@ import remarkHtml from "remark-html";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
-import ArticleType from "../../interfaces/article";
+import ArticleType from "~/types/article";
 import { useRouter } from "next/router";
 
 import * as AllComponents from "../index";

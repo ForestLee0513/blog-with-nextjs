@@ -23,7 +23,7 @@ Markdown/MDX으로 작성된 글을 파싱하여 열람하는데 걸리는 시�
 동적으로 이미지를 생성하고 싶은 페이지가 있다면 `useDyanmicThumbnail` 프롭을 추가하고 `image` 프롭을 HeadMeta에서 아래와 같이 제거하시면 됩니다.
 
 ```jsx
-import HeadMeta from "../components/HeadMeta";
+import HeadMeta from "~/components/HeadMeta";
 
 const Page = () => {
   return (

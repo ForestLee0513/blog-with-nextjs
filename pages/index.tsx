@@ -1,10 +1,10 @@
 import { GetStaticPropsContext } from "next";
 
-import { getAllLocaledArticles } from "../lib/markdownParser";
-import Post from "../interfaces/article";
-import { AuthorCard, List } from "../components/article";
-import bio from "../bio";
-import HeadMeta from "../components/HeadMeta";
+import { getAllLocaledArticles } from "~/lib/markdownParser";
+import Post from "~/types/article";
+import { AuthorCard, List } from "~/components/article";
+import bio from "~/bio";
+import HeadMeta from "~/components/HeadMeta";
 
 type Props = {
   articles: Post[];
