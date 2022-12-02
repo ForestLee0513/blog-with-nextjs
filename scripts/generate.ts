@@ -1,9 +1,11 @@
+import { capitalize } from "./utils/capitalize";
+
 export function generateRouteContent(index: string) {
   return function (keys: string[]) {
     const routes = keys.map((route) => {
       return {
         path: `/${index === route ? "" : route}`,
-        name: route,
+        name: capitalize(route),
       };
     });
 
