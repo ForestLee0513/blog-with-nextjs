@@ -1,4 +1,4 @@
-export function getRouteFileText(index: string) {
+export function generateRouteContent(index: string) {
   return function (keys: string[]) {
     const routes = keys.map((route) => {
       return {
