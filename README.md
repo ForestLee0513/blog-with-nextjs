@@ -46,6 +46,58 @@ const Page = () => {
 You can choose depoly types from SSR/SSG if you want build this project to SSG, you can build simple to type `yarn static` than deploy it from `out` folder.
 And you can build this project to SSR to type `yarn build`.
 
+### 5. Routes object generator
+
+You can generate route object dynamically in starting dev sever or build this project.
+If you start a dev server or build this project, a routes.ts is will generate in `_generated` folder and routes.ts is looks like this (with formatting).
+
+```ts
+const routes = [
+  { path: "/", name: "Blog" },
+  { path: "/projects", name: "Projects" },
+  { path: "/resume", name: "Resume" },
+];
+
+export default routes;
+```
+
+You can routes.ts file as object in any components like `components/header/index.tsx`.
+
+```tsx
+// ...
+import routes from "~/_generated/routes";
+
+const Header = () => {
+  return (
+    // ...
+    <NavList className="flex-col md:flex-row">
+      {routes.map((route: Route) => {
+        return (
+          <NavItem href={route.path} pathname={pathname} key={route.name}>
+            {route.name}
+          </NavItem>
+        );
+      })}
+    </NavList>
+    // ...
+  );
+};
+
+export default Header;
+```
+
+If you want ignore Routes in route.ts at `scripts/routes.ts` and change `getPages` Function like this.
+
+```ts
+// ...
+pipe(
+  getPages(["pages/api/*", "pages/_*", "pages/index.*"]), // ignore lists.
+  generateRouteContent("blog"),
+  writeFile("_generated/routes.ts")
+);
+// ...
+```
+
 ## Quick Start
 
 ### 1. Clone this repo
