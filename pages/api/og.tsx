@@ -1,12 +1,12 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-import bio from "../../bio";
+import bio from "~/bio";
 
 const spoqaRegular = fetch(
-  new URL("../../public/fonts/SpoqaHanSansNeo-Regular.ttf", import.meta.url)
+  new URL("~/public/fonts/SpoqaHanSansNeo-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 const spoqaBold = fetch(
-  new URL("../../public/fonts/SpoqaHanSansNeo-Bold.ttf", import.meta.url)
+  new URL("~/public/fonts/SpoqaHanSansNeo-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export const config = {

@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import Container from "../Container";
 
-const Header = ({
+const HeaderContainer = ({
   className,
   children,
   ...rest
@@ -13,4 +13,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default HeaderContainer;

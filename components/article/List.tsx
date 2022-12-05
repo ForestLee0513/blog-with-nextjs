@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import ArticleType from "../../interfaces/article";
+import ArticleType from "~/types/article";
 
 interface Props {
   articles: ArticleType[];
