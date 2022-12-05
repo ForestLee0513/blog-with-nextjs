@@ -9,7 +9,7 @@ const nextConfig = {
   i18n: {
     locales: ["ko-KR", "en-US"],
     defaultLocale: "ko-KR",
-    // localeDetection: true,
+    localeDetection: false,
   },
 };
 
