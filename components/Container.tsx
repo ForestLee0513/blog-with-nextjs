@@ -1,13 +1,13 @@
 import { HTMLAttributes } from "react";
 
 const Container = ({
-  className = "",
+  className,
   children,
   ...rest
 }: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
-      className={`container mx-auto prose dark:prose-invert ${className}`}
+      className={`container mx-auto prose dark:prose-invert ${className || ""}`}
       {...rest}
     >
       {children}
