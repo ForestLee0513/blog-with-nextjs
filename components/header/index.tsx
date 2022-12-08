@@ -45,7 +45,7 @@ const Header = () => {
         <HeaderItemFull>
           <ThemeToggler />
         </HeaderItemFull>
-        <HeaderItem className="md:hidden">
+        <HeaderItem className="md:hidden flex-0">
           <button
             className="my-0 w-8 h-8 flex items-center justify-center"
             onClick={toggle}
