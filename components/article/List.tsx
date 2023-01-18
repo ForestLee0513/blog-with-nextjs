@@ -9,7 +9,7 @@ interface Props {
 }
 
 const List = ({ articles, route, emptyErrorMessage }: Props) => {
-  return articles.length > 0 || Array.isArray(articles) ? (
+  return articles.length > 0 && Array.isArray(articles) ? (
     <ul className="p-0 list-none">
       {articles.map((article: ArticleType, index) => {
         const {
