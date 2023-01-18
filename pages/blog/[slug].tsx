@@ -1,8 +1,11 @@
 import type ArticleType from "~/types/article";
-import { getAllArticles, getArticleFromSlug } from "~/lib/markdownParser";
+import {
+  getArticleFromSlug,
+  getAllLocaledArticles,
+} from "~/lib/markdownParser";
 import { Body, Header, AuthorCard } from "~/components/article";
 import HeadMeta from "~/components/HeadMeta";
-import { GetStaticPathsContext, GetStaticPropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 
 type Props = {
   // morePosts: ArticleType[];
@@ -10,11 +13,12 @@ type Props = {
   article: ArticleType;
 };
 
-export default function BlogArticle({ article }: Props) {
+const BlogArticle = ({ article }: Props) => {
   const {
     frontmatter: { title, date, description },
     readingTime,
   } = article;
+
   return (
     <>
       <HeadMeta
@@ -32,7 +36,7 @@ export default function BlogArticle({ article }: Props) {
       <AuthorCard />
     </>
   );
-}
+};
 
 interface IParams extends GetStaticPropsContext {
   params: {
@@ -40,10 +44,10 @@ interface IParams extends GetStaticPropsContext {
   };
 }
 
-export async function getStaticProps({ params, locale }: IParams) {
+export const getStaticProps = async ({ params, locale }: IParams) => {
   const article = await getArticleFromSlug(
     params.slug,
-    "_data/blog",
+    `_data/${locale}/blog`,
     locale as string
   );
 
@@ -53,19 +57,33 @@ export async function getStaticProps({ params, locale }: IParams) {
       isFallback: false,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
-  const articles = await getAllArticles("_data/blog");
+export const getStaticPaths = async ({ locales }: GetStaticPropsContext) => {
+  const pathsPromise = locales?.map(async (locale) => {
+    const articles = await getAllLocaledArticles(
+      `_data/${locale}/blog`,
+      locale as string
+    );
 
-  return {
-    paths: articles.map((article: ArticleType) => {
+    return articles.map((article) => {
       return {
         params: {
           slug: article.slug,
         },
+        locale: locale,
       };
-    }),
-    fallback: false,
-  };
-}
+    });
+  });
+
+  if (pathsPromise) {
+    const paths = await Promise.all(pathsPromise);
+
+    return {
+      paths: paths.flat(),
+      fallback: false,
+    };
+  }
+};
+
+export default BlogArticle;

@@ -34,40 +34,45 @@ export async function getArticleFromSlug(
 
   const articleMdPath = join(folderPath, `${slug}.md`);
   const articleMdxPath = join(folderPath, `${slug}.mdx`);
-  const source = fs.existsSync(articleMdxPath)
-    ? fs.readFileSync(articleMdxPath)
-    : fs.readFileSync(articleMdPath);
-  const {
-    content,
-    data: { date, ...data },
-  } = matter(source);
-  const localedDate = new Date(date).toLocaleString(locale, {
-    timeZone: "UTC",
-  });
 
-  return JSON.parse(
-    JSON.stringify({
-      frontmatter: { date: localedDate, ...data },
-      readingTime: readingTime(content).text,
-      mdxSource: fs.existsSync(articleMdxPath)
-        ? await serialize(content, {
-            mdxOptions: {
-              rehypePlugins: [rehypeHighlight],
-              format: "mdx",
-            },
-          })
-        : null,
-      isMdx: fs.existsSync(articleMdxPath),
-      slug,
+  if (fs.existsSync(articleMdxPath) || fs.existsSync(articleMdPath)) {
+    const source = fs.existsSync(articleMdxPath)
+      ? fs.readFileSync(articleMdxPath)
+      : fs.readFileSync(articleMdPath);
+    const {
       content,
-    })
-  );
+      data: { date, ...data },
+    } = matter(source);
+    const localedDate = new Date(date).toLocaleString(locale, {
+      timeZone: "UTC",
+    });
+
+    return JSON.parse(
+      JSON.stringify({
+        frontmatter: { date: localedDate, ...data },
+        readingTime: readingTime(content).text,
+        mdxSource: fs.existsSync(articleMdxPath)
+          ? await serialize(content, {
+              mdxOptions: {
+                rehypePlugins: [rehypeHighlight],
+                format: "mdx",
+              },
+            })
+          : null,
+        isMdx: fs.existsSync(articleMdxPath),
+        slug,
+        content,
+      })
+    );
+  }
+
+  return undefined;
 }
 
 // 모든 article 정보 조회 (날짜 포맷 적용)
 export async function getAllLocaledArticles(
   folderPath: string,
-  locale: string
+  locale?: string
 ) {
   if (!folderPath) {
     throw new Error("Required: No folder path");
@@ -75,20 +80,7 @@ export async function getAllLocaledArticles(
 
   return await Promise.all(
     getSlug(folderPath).map((slug) =>
-      getArticleFromSlug(slug, folderPath, locale)
-    )
-  );
-}
-
-// 모든 article 정보 조회 (날짜 포맷 미적용 / 1개의 Article의 정보를 얻기위한 정보로 사용됨)
-export async function getAllArticles(folderPath: string) {
-  if (!folderPath) {
-    throw new Error("Required: No folder path");
-  }
-
-  return await Promise.all(
-    getSlug(folderPath).map((slug) =>
-      getArticleFromSlug(slug, folderPath, "en-US")
+      getArticleFromSlug(slug, folderPath, locale || "")
     )
   );
 }

@@ -1,6 +1,6 @@
 ---
-title: "Blog Markdown example"
-description: "This article is example for Markdown"
+title: "마크다운 예제"
+description: "한국어로 작성된 마크다운 예제입니다."
 date: 2022-10-27 16:25:00
 ---
 

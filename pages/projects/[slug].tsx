@@ -1,5 +1,8 @@
 import type ArticleType from "~/types/article";
-import { getAllArticles, getArticleFromSlug } from "~/lib/markdownParser";
+import {
+  getAllLocaledArticles,
+  getArticleFromSlug,
+} from "~/lib/markdownParser";
 import { Body, Header, AuthorCard } from "~/components/article";
 import HeadMeta from "~/components/HeadMeta";
 import { GetStaticPropsContext } from "next";
@@ -8,7 +11,13 @@ type Props = {
   article: ArticleType;
 };
 
-export default function ProjectArticle({ article }: Props) {
+interface IParams extends GetStaticPropsContext {
+  params: {
+    slug: string;
+  };
+}
+
+const ProjectArticle = ({ article }: Props) => {
   const {
     frontmatter: { title, date, description },
     readingTime,
@@ -30,18 +39,12 @@ export default function ProjectArticle({ article }: Props) {
       <AuthorCard />
     </>
   );
-}
+};
 
-interface IParams extends GetStaticPropsContext {
-  params: {
-    slug: string;
-  };
-}
-
-export async function getStaticProps({ params: { slug }, locale }: IParams) {
+export const getStaticProps = async ({ params, locale }: IParams) => {
   const article = await getArticleFromSlug(
-    slug,
-    "_data/projects",
+    params.slug,
+    `_data/${locale}/projects`,
     locale as string
   );
 
@@ -51,19 +54,33 @@ export async function getStaticProps({ params: { slug }, locale }: IParams) {
       isFallback: false,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
-  const articles = await getAllArticles("_data/projects");
+export const getStaticPaths = async ({ locales }: GetStaticPropsContext) => {
+  const pathsPromise = locales?.map(async (locale) => {
+    const articles = await getAllLocaledArticles(
+      `_data/${locale}/projects`,
+      locale as string
+    );
 
-  return {
-    paths: articles.map((article: ArticleType) => {
+    return articles.map((article) => {
       return {
         params: {
           slug: article.slug,
         },
+        locale: locale,
       };
-    }),
-    fallback: false,
-  };
-}
+    });
+  });
+
+  if (pathsPromise) {
+    const paths = await Promise.all(pathsPromise);
+
+    return {
+      paths: paths.flat(),
+      fallback: false,
+    };
+  }
+};
+
+export default ProjectArticle;

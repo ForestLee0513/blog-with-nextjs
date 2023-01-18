@@ -28,7 +28,10 @@ const Index = ({ articles }: Props) => {
 };
 
 export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
-  const articles = await getAllLocaledArticles("_data/blog", locale as string);
+  const articles = await getAllLocaledArticles(
+    `_data/${locale}/blog`,
+    locale as string
+  );
 
   return { props: { articles } };
 };

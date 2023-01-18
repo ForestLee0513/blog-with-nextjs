@@ -27,7 +27,7 @@ const Projects = ({ articles }: Props) => {
 
 export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
   const articles = await getAllLocaledArticles(
-    "_data/projects",
+    `_data/${locale}/projects`,
     locale as string
   );
 
