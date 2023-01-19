@@ -1,4 +1,4 @@
-import { capitalize } from "./utils/capitalize";
+import { capitalize } from "./utils/capitalize.mjs";
 
 export function generateRouteContent(index: string) {
   return function (keys: string[]) {

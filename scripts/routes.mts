@@ -1,5 +1,5 @@
-import { getPages, writeFile } from "./files";
-import { generateRouteContent } from "./generate";
+import { getPages, writeFile } from "./files.mjs";
+import { generateRouteContent } from "./generate.mjs";
 import { pipe } from "fp-ts/lib/function";
 
 pipe(

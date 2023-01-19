@@ -1,5 +1,8 @@
 import { GetStaticPropsContext } from "next";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
 import { getAllLocaledArticles } from "~/lib/markdownParser";
 import Post from "~/types/article";
 import { AuthorCard, List } from "~/components/article";
@@ -11,11 +14,14 @@ type Props = {
 };
 
 const Index = ({ articles }: Props) => {
+  const { t } = useTranslation("common");
+
   return (
     <div>
       <HeadMeta useDyanmicThumbnail={false} />
       <main>
-        <h1>Welcome to {bio.username}&#39;s Page</h1>
+        {/* <h1>Welcome to {bio.username}&#39;s Page</h1> */}
+        <h1>{t("title", { username: bio.username })}</h1>
         <AuthorCard />
         <List
           route="/blog"
@@ -33,7 +39,12 @@ export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
     locale as string
   );
 
-  return { props: { articles } };
+  return {
+    props: {
+      articles,
+      ...(await serverSideTranslations(locale as string, ["common"])),
+    },
+  };
 };
 
 export default Index;

@@ -5,9 +5,8 @@
   "config": {
     "url": "https://forestlee-nextjs-blog-demo.netlify.app"
   },
-  "type": "module",
   "scripts": {
-    "filegen:routes": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/routes.ts",
+    "filegen:routes": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/routes.mts",
     "dev": "yarn filegen:routes && cross-env NEXT_PUBLIC_IS_PRODUCTION=false NEXT_PUBLIC_EXPORT_TYPE=SSR next dev",
     "build": "yarn filegen:routes && cross-env NEXT_PUBLIC_IS_PRODUCTION=true NEXT_PUBLIC_EXPORT_TYPE=SSR next build",
     "start": "next start",
@@ -21,11 +20,14 @@
     "@mui/material": "^5.10.11",
     "@vercel/og": "^0.0.20",
     "gray-matter": "^4.0.3",
+    "i18next": "^22.4.9",
     "next": "12.3.1",
+    "next-i18next": "^13.0.3",
     "next-mdx-remote": "^4.1.0",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^12.1.4",
     "react-markdown": "^8.0.3",
     "reading-time": "^1.5.0",
     "rehype-highlight": "^6.0.0",

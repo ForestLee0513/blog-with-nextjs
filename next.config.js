@@ -1,16 +1,12 @@
+const { i18n } = require("./next-i18next.config");
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
     loader: "akamai",
     path: "/",
   },
-  i18n: {
-    locales: ["ko", "en-US"],
-    defaultLocale: "ko",
-    localeDetection: false,
-  },
+  i18n,
 };
-
-export default nextConfig;

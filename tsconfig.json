@@ -20,6 +20,15 @@
     },
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_doocument.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/_doocument.js",
+    "scripts/utils/capitalize.mts",
+    "scripts/files.mts",
+    "scripts/generate.mts",
+    "scripts/routes.mts"
+  ],
   "exclude": ["node_modules"]
 }
