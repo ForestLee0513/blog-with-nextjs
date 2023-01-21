@@ -10,7 +10,7 @@ const Header = ({ title, date, readingTime, description }: Props) => {
     <div>
       <h1>{title}</h1>
       <p>
-        작성일: {date} <span>({readingTime})</span>
+        {date} <span>({readingTime})</span>
       </p>
       <p>{description}</p>
       <hr />

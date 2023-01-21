@@ -5,7 +5,7 @@ import ArticleType from "~/types/article";
 interface Props {
   articles: ArticleType[];
   route: string;
-  emptyErrorMessage?: string;
+  emptyErrorMessage?: string | null;
 }
 
 const List = ({ articles, route, emptyErrorMessage }: Props) => {
@@ -22,7 +22,7 @@ const List = ({ articles, route, emptyErrorMessage }: Props) => {
             <li>
               <h3>{title}</h3>
               <p>{description}</p>
-              작성일: {date} <span>({readingTime})</span>
+              {date} <span>({readingTime})</span>
               <hr />
             </li>
           </Link>
@@ -30,7 +30,7 @@ const List = ({ articles, route, emptyErrorMessage }: Props) => {
       })}
     </ul>
   ) : (
-    <p>{emptyErrorMessage || "글이 존재하지 않습니다."}</p>
+    <p>{emptyErrorMessage || "A published articles are not exists."}</p>
   );
 };
 
