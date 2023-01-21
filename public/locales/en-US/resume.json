@@ -1,0 +1,4 @@
+{
+  "resumeNotExistsErrorTitle": "A published resume is not exists",
+  "resumeNotExistsErrorDescription": "Please add resume file in _data/[locale] folder."
+}

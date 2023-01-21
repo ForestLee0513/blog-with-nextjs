@@ -1,14 +1,19 @@
+import { GetStaticPropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
 import ArticleType from "~/types/article";
 import { getArticleFromSlug } from "~/lib/markdownParser";
 import { Body, Header } from "~/components/article";
 import HeadMeta from "~/components/HeadMeta";
-import { GetStaticPropsContext } from "next";
 
 type Props = {
   article: ArticleType;
 };
 
 const Resume = ({ article }: Props) => {
+  const { t } = useTranslation("resume");
+
   if (article) {
     const {
       frontmatter: { title, date, description },
@@ -31,8 +36,8 @@ const Resume = ({ article }: Props) => {
 
   return (
     <>
-      <h1>추가된 이력서가 없습니다.</h1>
-      <p>_data/[locale] 폴더에 이력서를 추가 해주세요.</p>
+      <h1>{t("resumeNotExistsErrorTitle")}</h1>
+      <p>{t("resumeNotExistsErrorDescription")}</p>
     </>
   );
 };
@@ -48,12 +53,15 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
       props: {
         article,
+        ...(await serverSideTranslations(locale as string, ["resume"])),
         isFallback: false,
       },
     };
   }
+
   return {
     props: {
+      ...(await serverSideTranslations(locale as string, ["resume"])),
       isFallback: false,
     },
   };

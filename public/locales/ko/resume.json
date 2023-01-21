@@ -1,0 +1,4 @@
+{
+  "resumeNotExistsErrorTitle": "추가된 이력서가 없습니다.",
+  "resumeNotExistsErrorDescription": "_data/[locale] 폴더에 이력서를 추가 해주세요."
+}
