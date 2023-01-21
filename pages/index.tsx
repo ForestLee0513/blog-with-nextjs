@@ -26,7 +26,7 @@ const Index = ({ articles }: Props) => {
         <List
           route="/blog"
           articles={articles}
-          emptyErrorMessage="아직 공개된 글이 없습니다."
+          emptyErrorMessage={t("articleEmptyError")}
         />
       </main>
     </div>

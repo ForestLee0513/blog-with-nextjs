@@ -1,3 +1,4 @@
 {
-  "title": "{{username}}님의 페이지에 오신걸 환영합니다."
+  "title": "{{username}}님의 페이지에 오신걸 환영합니다.",
+  "articleEmptyError": "공개된 글이 존재하지 않습니다."
 }

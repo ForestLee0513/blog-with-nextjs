@@ -1,3 +1,4 @@
 {
-  "title": "Welcome to {{username}}'s page"
+  "title": "Welcome to {{username}}'s page",
+  "articleEmptyError": "A published articles are not exists."
 }
