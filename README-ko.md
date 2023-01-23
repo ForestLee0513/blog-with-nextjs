@@ -59,7 +59,7 @@ const routes = [
 export default routes;
 ```
 
-routes.ts 파일은 객체로써 사용될 수 있으며 `components/header/index.tsx`처럼 아무 컴포넌트에서 사용 가능합니다.
+routes.ts 파일은 객체로써 사용될 수 있으며 `components/header/index.tsx`처럼 아무 컴포넌트에서 사용할 수 있습니다.
 
 ```tsx
 // ...
@@ -96,6 +96,118 @@ pipe(
 // ...
 ```
 
+### 6. i18n 번역 (새로운 기능! / 현재 SSR에서만 사용 가능)
+
+> 이 기능은 현재 SSR에서만 동작하며 곧 SSG에도 대응 할 예정입니다.
+> next-i18next과 관련된 문서를 보고 싶다면 [여기를 눌러주세요.](https://github.com/i18next/next-i18next)
+
+아래와 같은 과정을 거친다면 번역 기능을 추가할 수 있습니다. (끼얏호우!)
+
+#### 추가 방법
+
+1. 번역 파일을 `public/locales/[language]`에 아래와 같이 추가 하십시오.
+
+```
+📦public
+ ┣ etc...
+ ┣ 📂locales
+ ┃ ┣ 📂en-US
+ ┃ ┃ ┣ 📜common.json
+ ┃ ┃ ┣ 📜projects.json
+ ┃ ┃ ┗ 📜resume.json
+ ┃ ┗ 📂ko
+ ┃ ┃ ┣ 📜common.json
+ ┃ ┃ ┣ 📜projects.json
+ ┃ ┃ ┗ 📜resume.json
+ ┗ etc...
+```
+
+2. 아래와 같이 번역 정보를 작성하십시오. (`common.json`은 기본값이므로 필수입니다.)
+
+- 정적 번역 파일
+
+```json
+{
+  "title": "Welcome to test's page."
+}
+```
+
+- 변수를 넣을 수 있는 번역 파일
+
+```json
+{
+  "title": "Welcome to {{username}}'s page."
+}
+```
+
+3. 번역 적용 하기
+
+- 변수를 제외한 번역정보 불러오기
+
+```tsx
+const Index = ({ articles }: Props) => {
+  const { t } = useTranslation("common"); // 파일 이름
+
+  return (
+    <div>
+      // t("해당 파일에 추가한 locale key")
+      <h1>{t("title")}</h1>
+    </div>
+  );
+};
+
+// 번역 정보는 이미 여기서 전달되고 있어요.
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  return {
+    props: {
+      // 기타 프롭들...
+      // 여기서 locale은 간혹 undefined으로 전달될 때도 있습니다.
+      // 만약 pages에서 적용한다면 locale을 undefined를 제외하고 전달 받을 수 있습니다.
+      ...(await serverSideTranslations(locale as string, ["common"])), // 파일 이름
+    },
+  };
+};
+
+export default Index;
+```
+
+- With variables
+
+```tsx
+const Index = ({ articles }: Props) => {
+  const { t } = useTranslation("common"); // 파일 이름
+
+  return (
+    <div>
+      // t("해당 파일에 추가한 locale key", { 변수 키: 값 })
+      <h1>{t("title", { username: "foo" })}</h1>
+    </div>
+  );
+};
+
+// 번역 정보는 이미 여기서 전달되고 있어요.
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  return {
+    props: {
+      // 기타 프롭들...
+      // 여기서 locale은 간혹 undefined으로 전달될 때도 있습니다.
+      // 만약 pages에서 적용한다면 locale을 undefined를 제외하고 전달 받을 수 있습니다.
+      ...(await serverSideTranslations(locale as string, ["common"])), // 파일 이름
+    },
+  };
+};
+
+export default Index;
+```
+
+#### 번역 기능 제거하기
+
+만약 이 기능을 제거하고 싶다면 아래와 같은 과정을 따르세요.
+
+1. 기본 언어값을 제외한 아티클 데이터를 `_data`에서 삭제하세요. (기본 언어값은 한국어이며 자세한 정보는 `next-i18next.config.js`에서 확인 가능합니다.)
+2. 번역 파일을 `public`에서 삭제하세요.
+3. `useTranslation` 혹은 `serverSideTranslations`와 같이 `next-i18next`와 관련된 모듈을 Pages에서 삭제하세요.
+
 ## 빠른 시작
 
 ### 1. 레파지토리 복사
@@ -106,7 +218,7 @@ git clone https://github.com/ForestLee0513/blog-with-nextjs.git
 
 ### 2. 패키지 설치
 
-이 탬플릿은 Yarn에 최적화 되어있지만 npm에서도 사용 가능합니다.
+이 탬플릿은 Yarn에 최적화 되어있지만 npm에서도 사용할 수 있습니다.
 
 ```
 yarn

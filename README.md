@@ -98,6 +98,118 @@ pipe(
 // ...
 ```
 
+### 6. i18n Locale (New! / SSR Only for now)
+
+> This feature is SSR only now. but I'll convert or create a repo to for SSG soon.
+> If you want see more infos about next-i18next, [Click here](https://github.com/i18next/next-i18next)
+
+If you follow this steps, you can add locale in your blog. (yay!)
+
+#### How to add
+
+1. Add locale files in `public/locales/[language]` like this.
+
+```
+📦public
+ ┣ etc...
+ ┣ 📂locales
+ ┃ ┣ 📂en-US
+ ┃ ┃ ┣ 📜common.json
+ ┃ ┃ ┣ 📜projects.json
+ ┃ ┃ ┗ 📜resume.json
+ ┃ ┗ 📂ko
+ ┃ ┃ ┣ 📜common.json
+ ┃ ┃ ┣ 📜projects.json
+ ┃ ┃ ┗ 📜resume.json
+ ┗ etc...
+```
+
+2. Write a locale text like this. (You have to create a `common.json` for default locale file.)
+
+- Static locale text
+
+```json
+{
+  "title": "Welcome to test's page."
+}
+```
+
+- Locale text with variable
+
+```json
+{
+  "title": "Welcome to {{username}}'s page."
+}
+```
+
+3. Apply locales to page.
+
+- Without variables
+
+```tsx
+const Index = ({ articles }: Props) => {
+  const { t } = useTranslation("common"); // locale filename
+
+  return (
+    <div>
+      // t("locale key in file")
+      <h1>{t("title")}</h1>
+    </div>
+  );
+};
+
+// A locale infos are already pass from here.
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  return {
+    props: {
+      // Other props...
+      // A locale is returns undefined sometimes.
+      // But if you use locale in pages, you can get locale without undefined.
+      ...(await serverSideTranslations(locale as string, ["common"])), // locale filename
+    },
+  };
+};
+
+export default Index;
+```
+
+- With variables
+
+```tsx
+const Index = ({ articles }: Props) => {
+  const { t } = useTranslation("common"); // locale filename
+
+  return (
+    <div>
+      // t("locale key in file", { variableKey: value })
+      <h1>{t("title", { username: "foo" })}</h1>
+    </div>
+  );
+};
+
+// A locale infos are already pass from here.
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
+  return {
+    props: {
+      // Other props...
+      // A locale is returns undefined sometimes.
+      // But if you use locale in pages, you can get locale without undefined.
+      ...(await serverSideTranslations(locale as string, ["common"])), // locale filename
+    },
+  };
+};
+
+export default Index;
+```
+
+#### Remove a locale feature.
+
+If you want to remove a locale features, just follow a steps.
+
+1. Remove a Article data in `_data` folder other locale and save a articles of default locale. (In this case, a default locale is Korean. And you can see default locale in `next-i18next.config.js`)
+2. Remove a locales file in `public`.
+3. Remove a modules from `next-i18next` like `useTranslation` or `serverSideTranslations` in page files.
+
 ## Quick Start
 
 ### 1. Clone this repo
